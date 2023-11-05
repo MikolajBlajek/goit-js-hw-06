@@ -1,29 +1,22 @@
-document.addEventListener("DOMContentLoaded", function() {
-  const loginForm = document.querySelector(".login-form");
 
-  loginForm.addEventListener("submit", function(event) {
-    event.preventDefault(); 
+const form = document.querySelector('.login-form');
 
-    const formData = new FormData(loginForm);
+const sendForm = event => {
+  event.preventDefault();
+  const {
+    elements: { email, password },
+  } = event.currentTarget; 
 
-    let isFormValid = true;
-    for (const [name, value] of formData.entries()) {
-      if (value.trim() === "") {
-        isFormValid = false;
-        alert("Wszystkie pola muszą być wypełnione!");
-        break;
-      }
-    }
+  if (email.value === '' || password.value === '') {
+    return alert("Wszystkie pola muszą by wypełnione!");
+  }
+   
+  const objectData = {
+    email: email.value,
+    password: password.value,
+  };
+  console.log(objectData);
+  event.currentTarget.reset();
+};
 
-    if (isFormValid) {
-      const formValues = {};
-      formData.forEach((value, name) => {
-        formValues[name] = value;
-      });
-
-      console.log("Wartości formularza:", formValues);
-
-      loginForm.reset();
-    }
-  });
-});
+form.addEventListener('submit', sendForm);
