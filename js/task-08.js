@@ -1,22 +1,24 @@
-
 const form = document.querySelector('.login-form');
 
 const sendForm = event => {
   event.preventDefault();
+
   const {
     elements: { email, password },
-  } = event.currentTarget; 
+  } = event.currentTarget;
 
   if (email.value === '' || password.value === '') {
-    return alert("Wszystkie pola muszą by wypełnione!");
+    alert("Wszystkie pola muszą być wypełnione!");
+  } else {
+    const formValues = {};
+    for (const input of event.currentTarget.elements) {
+      if (input.type !== "submit") {
+        formValues[input.name] = input.value;
+      }
+    }
+    console.log("Wartości formularza:", formValues);
+    event.currentTarget.reset();
   }
-   
-  const objectData = {
-    email: email.value,
-    password: password.value,
-  };
-  console.log(objectData);
-  event.currentTarget.reset();
 };
 
 form.addEventListener('submit', sendForm);
