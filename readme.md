@@ -1,1 +1,1 @@
-https://github.com/MikolajBlajek/goit-js-hw-06.git
+https://MikolajBlajek.github.io/goit-js-hw-06/
